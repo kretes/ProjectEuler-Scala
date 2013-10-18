@@ -14,16 +14,31 @@ object Problem3 {
         }
       }
 
-    def nextPrime: PrimeAwareLong =
+    def nextPrime: Long =
       self match {
         case 1L => 2L
         case _ => {
           (self + 1L to self * 2L).toStream.find(_.isPrime).get
         }
       }
+
+    def primeFactorization: List[Long] = {
+      def primeFactorsFrom (n: Long): Stream[Long] = {
+        n #:: primeFactorsFrom(n.nextPrime)
+      }
+
+      primeFactorsFrom(3L)
+        .takeWhile(_ < Math.sqrt(self).toLong)
+        .filter(self % _ == 0)
+        .toList
+    }
   }
 
   def primeFactorsOf(n: Long): List[Long] = {
-    List(5, 7, 13, 29)
+    n.primeFactorization
+  }
+
+  def largestPrimeFactorOf(n: Long): Long = {
+    n.primeFactorization.last
   }
 }
