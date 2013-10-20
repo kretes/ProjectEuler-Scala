@@ -22,7 +22,7 @@ object Problem3 {
         }
       }
 
-    def primeFactorization: List[Long] = {
+    def primeFactors: List[Long] = {
       def primeFactorsFrom (n: Long): Stream[Long] = {
         n #:: primeFactorsFrom(n.nextPrime)
       }
@@ -35,10 +35,10 @@ object Problem3 {
   }
 
   def primeFactorsOf(n: Long): List[Long] = {
-    n.primeFactorization
+    n.primeFactors
   }
 
   def largestPrimeFactorOf(n: Long): Long = {
-    n.primeFactorization.last
+    n.primeFactors.last
   }
 }
