@@ -3,9 +3,7 @@ package euler
 import euler.tools.ImplicitConversions._
 
 object Problem7 {
-  def nthPrime (n: Int): Long = {
-    var acc: Long = 2
-    1 until n foreach (x => acc = acc.nextPrime)
-    acc
-  }
+  def primesFrom (start: Long): Stream[Long] = start #:: primesFrom(start.nextPrime)
+
+  def nthPrime (n: Int): Long = (primesFrom(2) take n).toList.last
 }
