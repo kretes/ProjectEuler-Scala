@@ -5,7 +5,5 @@ object Problem8 {
 
   def multiply (x: Int, y: Int) = x * y
 
-  def solution (s: String): Int = {
-    ((s sliding 5) map (i => i map toInt reduce multiply)).max
-  }
+  def solution (s: String): Int = ((s sliding 5) map (_ map toInt reduce multiply)).max
 }
