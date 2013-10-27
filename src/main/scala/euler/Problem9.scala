@@ -3,6 +3,8 @@ package euler
 object Problem9 {
 
   /**
+   * Adapted from my C# Solution:
+   *
    * public List<int> GetPythagoreanTripletWhoseSumEquals (int sumConstraint) {
    *     int aUpperBound,
    *         bUpperBound,
@@ -35,34 +37,32 @@ object Problem9 {
    * }
    *
    * @param sumConstraint Int
-   * @return
+   * @return Option of Pythagorean Triple
    */
   def solution (sumConstraint: Int): Option[(Int, Int, Int)] = {
-    var aUpperBound,  bUpperBound,  cUpperBound = 0
-    var a, aLowerBound = 3
-    var b, bLowerBound = 4
-    var c, cLowerBound = 5
 
-    do {
-      aUpperBound = aLowerBound * 2
-      bUpperBound = bLowerBound * 2
-      cUpperBound = cLowerBound * 2
+    def searchForPythagoreanTriple (candidate: (Int, Int, Int)): Option[(Int, Int, Int)] = {
+      candidate match {
+        case (lowerBoundA, lowerBoundB, lowerBoundC) if lowerBoundA + lowerBoundB + lowerBoundC <= sumConstraint => {
+          val upperBoundA = lowerBoundA * 2
+          val upperBoundB = lowerBoundB * 2
+          val upperBoundC = lowerBoundC * 2
 
-      for (
-        a <- aLowerBound to aUpperBound;
-        b <- bLowerBound to bUpperBound;
-        c <- cLowerBound to cUpperBound if isPythagoreanTriple((a, b, c), sumConstraint)
-      ) {
-        return Some((a, b, c))
+          for (
+            a <- lowerBoundA to upperBoundA;
+            b <- lowerBoundB to upperBoundB;
+            c <- lowerBoundC to upperBoundC if isPythagoreanTriple((a, b, c), sumConstraint)
+          ) {
+            return Some((a, b, c))
+          }
+
+          searchForPythagoreanTriple(upperBoundA, upperBoundB, upperBoundC)
+        }
+        case _ => None
       }
+    }
 
-      aLowerBound = aUpperBound
-      bLowerBound = bUpperBound
-      cLowerBound = cUpperBound
-
-    } while (a + b + c < sumConstraint)
-
-    None
+    searchForPythagoreanTriple(3, 4, 5)
   }
 
   /**
