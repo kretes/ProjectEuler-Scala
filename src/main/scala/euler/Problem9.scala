@@ -39,9 +39,9 @@ object Problem9 {
    */
   def solution (sumConstraint: Int): Option[(Int, Int, Int)] = {
     var aUpperBound,  bUpperBound,  cUpperBound = 0
-    val a, aLowerBound = 3
-    val b, bLowerBound = 4
-    val c, cLowerBound = 5
+    var a, aLowerBound = 3
+    var b, bLowerBound = 4
+    var c, cLowerBound = 5
 
     do {
       aUpperBound = aLowerBound * 2
@@ -55,6 +55,10 @@ object Problem9 {
       ) {
         return Some((a, b, c))
       }
+
+      aLowerBound = aUpperBound
+      bLowerBound = bUpperBound
+      cLowerBound = cUpperBound
 
     } while (a + b + c < sumConstraint)
 
