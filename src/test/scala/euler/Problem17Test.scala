@@ -68,4 +68,12 @@ class Problem17Test extends FlatSpec with TableDrivenPropertyChecks with ShouldM
       Problem17.toText(input) should be (expectedOutput)
     }
   }
+
+  it should "return the correct number of total letters used from 1 to 5" in {
+    Problem17.solution(5) should be (19)
+  }
+
+  it should "return the correct number of total letters used from 1 to 1000" in {
+    Problem17.solution(1000) should be (21124)
+  }
 }
