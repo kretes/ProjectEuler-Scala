@@ -51,6 +51,12 @@ object TextVersion {
           }
         }
       }
+      case n if n == 3 => {
+        number % 100 match {
+          case 0 => Array(units(number / 100), "hundred").mkString(" ")
+          case _ => Array(of(number - (number % 100)), of(number % 100)).mkString(" ")
+        }
+      }
     }
   }
 }
