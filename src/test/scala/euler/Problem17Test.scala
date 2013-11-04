@@ -47,11 +47,11 @@ class Problem17Test extends FlatSpec with TableDrivenPropertyChecks with ShouldM
     (90, "ninety"),
     (99, "ninety-nine"),
     (100, "one hundred"),
-    (101, "one hundred one"),
-    (256, "two hundred fifty-six"),
-    (342, "three hundred forty-two"),
-    (978, "nine hundred seventy-eight"),
-    (999, "nine hundred ninety-nine")
+    (101, "one hundred and one"),
+    (256, "two hundred and fifty-six"),
+    (342, "three hundred and forty-two"),
+    (978, "nine hundred and seventy-eight"),
+    (999, "nine hundred and ninety-nine")
   )
 
   forAll (inputsAndExpectedOutputs) { (input: Int, expectedOutput: String) =>
