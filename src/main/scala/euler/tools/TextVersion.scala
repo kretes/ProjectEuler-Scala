@@ -57,6 +57,12 @@ object TextVersion {
           case _ => Array(of(number - (number % 100)), of(number % 100)).mkString(" and ")
         }
       }
+      case n if n < 7 => {
+        number % 1000 match {
+          case 0 => Array(units(number / 1000), "thousand").mkString(" ")
+          case _ => Array(of(number / 1000), "thousand", of(number % 1000)).mkString(" ")
+        }
+      }
     }
   }
 }
