@@ -20,14 +20,10 @@ object Problem12 {
 
   def numDivisors (n: Int): Int = {
     val squareRoot = Math.sqrt(n).toInt
-    var numDivisors = ((1 to squareRoot) map {
+    val numDivisors = ((2 to squareRoot) map {
       case x if n % x == 0 => 2
       case _ => 0
     }).sum
-
-    if (squareRoot * squareRoot == n) {
-      numDivisors -= 1
-    }
 
     numDivisors
   }
