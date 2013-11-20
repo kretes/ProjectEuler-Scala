@@ -39,7 +39,7 @@ object TextVersion {
     9 -> "ninety"
   )
 
-  def of (number: Int): String = {
+  def Of (number: Int): String = {
     number.toString.length match {
       case n if n == 1 => units(number)
       case n if n == 2 => {
@@ -54,19 +54,19 @@ object TextVersion {
       case n if n == 3 => {
         number % 100 match {
           case 0 => Array(units(number / 100), "hundred").mkString(" ")
-          case _ => Array(of(number - (number % 100)), of(number % 100)).mkString(" and ")
+          case _ => Array(Of(number - (number % 100)), Of(number % 100)).mkString(" and ")
         }
       }
       case n if n < 7 => {
         number % 1000 match {
           case 0 => Array(units(number / 1000), "thousand").mkString(" ")
-          case _ => Array(of(number / 1000), "thousand", of(number % 1000)).mkString(" ")
+          case _ => Array(Of(number / 1000), "thousand", Of(number % 1000)).mkString(" ")
         }
       }
       case n if n == 7 => {
         number % 1000000 match {
           case 0 => Array(units(number / 1000000), "million").mkString(" ")
-          case _ => Array(of(number / 1000000), "million", of(number % 1000000)).mkString(" ")
+          case _ => Array(Of(number / 1000000), "million", Of(number % 1000000)).mkString(" ")
         }
       }
     }
