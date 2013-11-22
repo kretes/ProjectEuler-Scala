@@ -11,4 +11,8 @@ class Problem22Test extends FlatSpec with ShouldMatchers {
   it should "be able to calculate the alphabetical value of mixed-case strings" in {
     Problem22.alphabeticalValueOf("ColIn") should be (53)
   }
+
+  it should "calculate the total of all the name scores in the file" in {
+    Problem22.nameScoreTotal should be (871198282)
+  }
 }
