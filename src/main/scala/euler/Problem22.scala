@@ -9,7 +9,7 @@ object Problem22 {
   )
 
   def alphabeticalValueOf (s: String): Int = {
-    s.map(alphabeticalValue).sum
+    s.toUpperCase.map(alphabeticalValue).sum
   }
 
 }
