@@ -1,11 +1,10 @@
 package euler
 
 object Problem2 {
-  def solution (highestFibonacci: Int): Int = {
-    fibFrom(1, 2).takeWhile(_ < highestFibonacci).filter(_ % 2 == 0).sum
-  }
+  import tools.NumberUtilities
+  private val ints = new NumberUtilities[Int]
 
-  def fibFrom (a: Int, b: Int): Stream[Int] = {
-    a #:: fibFrom(b, a + b)
+  def solution (highestFibonacci: Int): Int = {
+    ints.fibonacci.takeWhile(_ < highestFibonacci).filter(_ % 2 == 0).sum
   }
 }
