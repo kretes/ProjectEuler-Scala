@@ -5,8 +5,17 @@ import org.scalatest.matchers.ShouldMatchers
 import euler.Problem3._
 
 class Problem3Test extends FlatSpec with ShouldMatchers {
+
   "A Problem3 Solution" should "have a method to identify all the prime factors of 13195" in {
     primeFactorsOf(13195) should be (List(5, 7, 13, 29))
+  }
+
+  "A Problem3 Solution" should "have a method to identify all the prime factors of 1" in {
+    primeFactorsOf(1) should be (List())
+  }
+
+  it should "have a method to identify all the prime factors of 2" in {
+    primeFactorsOf(2) should be (List(2))
   }
 
   it should "return the correct largest prime factor of 13195" in {
