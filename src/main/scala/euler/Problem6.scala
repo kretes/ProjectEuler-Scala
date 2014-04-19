@@ -1,13 +1,12 @@
 package euler
 
 object Problem6 {
-  def square (x: Int): Int = x * x
+  def square (x: Int): Int = ???
 
-  def sumOfTheSquaresFromOneTo (x: Int): Int = (1 to x map square).sum
+  def sumOfTheSquaresFromOneTo (x: Int): Int = ???
 
-  def squareOfTheSumsFromOneTo (x: Int): Int = square((1 to x).sum)
+  def squareOfTheSumsFromOneTo (x: Int): Int = ???
 
-  def differenceBetweenSquareOfSumsAndSumOfSquaresFromOneTo (x: Int): Int =
-    squareOfTheSumsFromOneTo(x) - sumOfTheSquaresFromOneTo(x)
+  def differenceBetweenSquareOfSumsAndSumOfSquaresFromOneTo (x: Int): Int = ???
 }
 

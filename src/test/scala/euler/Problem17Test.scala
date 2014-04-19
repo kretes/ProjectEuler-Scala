@@ -63,12 +63,6 @@ class Problem17Test extends FlatSpec with TableDrivenPropertyChecks with ShouldM
     (1389442, "one million three hundred and eighty-nine thousand four hundred and forty-two")
   )
 
-  forAll (inputsAndExpectedOutputs) { (input: Int, expectedOutput: String) =>
-    it should s"be able to convert $input to $expectedOutput" in {
-      Problem17.toText(input) should be (expectedOutput)
-    }
-  }
-
   it should "return the correct number of total letters used from 1 to 5" in {
     Problem17.solution(5) should be (19)
   }

@@ -1,6 +1,5 @@
 package euler
 
-import scala.io.Source
 
 object Problem22 {
 
@@ -15,15 +14,5 @@ object Problem22 {
     s.toUpperCase.map(alphabeticalValue).sum
   }
 
-  def nameScoreTotal: Int = {
-    Source
-      .fromURL(getClass.getResource("/names.txt"))
-      .mkString
-      .replaceAll("\"", "")
-      .split(',')
-      .sortWith(_ < _)
-      .zipWithIndex
-      .map { case (name, index) => alphabeticalValueOf(name) * (index + 1) }
-      .sum
-  }
+  def nameScoreTotal: Int = ???
 }
