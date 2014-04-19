@@ -6,6 +6,10 @@ import euler.Problem2._
 
 class Problem2Test extends FlatSpec with ShouldMatchers {
 
+  it should "produce the correct sum of even fibonacci for first 10 terms" in {
+    solution(90) should be (44)
+  }
+
   it should "produce the correct sum of even fibonacci numbers less than 4 million" in {
     solution(4000000) should be (4613732)
   }
