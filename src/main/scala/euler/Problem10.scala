@@ -6,26 +6,33 @@ import scala.collection.GenSeq
 
 object Problem10 {
 
-  //350 sec - prime fac
-  //644 naive erastothen....
-  //???
+  def solution (limit: Long): Long = {
+    Problem7.primesFrom(2).takeWhile(_ < limit).sum
+  }
 
-  def extendUpTo(value: Long, primeMultipliers: GenSeq[(Long, Long)]): GenSeq[(Long, Long)] =
-    primeMultipliers.map((tuple:(Long,Long)) => if (tuple._2 >= value) tuple else
-      (tuple._1, value + (tuple._1 - (value % tuple._1)) % tuple._1))
+  // not that fast:
+
+  @tailrec
+  def getPrimes(primes: Vector[Long], sieve: Vector[Long], limit: Long): Vector[Long] = {
+//    println(s"have $primes and sieve $sieve")
+    val nextSieve = getNextSieve(sieve, primes.head,limit)
+    if(nextSieve.headOption.isDefined)
+      getPrimes(nextSieve.head +: primes,nextSieve, limit)
+    else
+      primes
+  }
 
 
-  def calculatePrimes(max:Long,start:Long, primeMultipliers: GenSeq[(Long,Long)]) : GenSeq[(Long,Long)] = {
-    if( start % 10000 == 0) println(s"for $start we have ${primeMultipliers.size} at ${System.currentTimeMillis()}")
-    if (start == max) primeMultipliers
-    else if (primeMultipliers.find(_._2 == start).isDefined) calculatePrimes(max, start + 1, primeMultipliers)
-    else if (primeMultipliers.find(_._2 < start).isDefined) calculatePrimes(max, start, extendUpTo(start, primeMultipliers))
-    else calculatePrimes(max, start + 1, primeMultipliers :+(start, start))
+  def getNextSieve(sieve: Vector[Long], prime: Long, limit: Long):Vector[Long] = {
+    sieve diff (prime to(limit,prime))
   }
 
 
 
-  def solution (limit: Long): Long = calculatePrimes(limit.toLong,3, Vector((2L,2L))).map(_._1).sum
+  def getPrimes(limit:Long):Vector[Long] = {
+    val numbers = (3L to limit).toVector
+    getPrimes(Vector(2L),numbers,limit)
+  }
 
 
 }
