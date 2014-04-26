@@ -2,37 +2,32 @@ package euler
 
 import scala.annotation.tailrec
 import scala.collection.GenSeq
+import scala.collection.immutable.Range.Inclusive
 
 
 object Problem10 {
 
-  def solution (limit: Long): Long = {
-    Problem7.primesFrom(2).takeWhile(_ < limit).sum
+  def calculateSieveUpTo(limit: Int) = {
+    val sieve = Array.fill(limit+1)(true)
+    sieve(0) = false
+    sieve(1) = false
+    var current = 2;
+    while(current<limit) {
+      if(sieve(current) == true) {
+        val range: Inclusive = (2 * current) to(limit,current)
+        range.foreach(sieve(_) = false)
+      }
+      current = current +1
+    }
+    sieve
   }
 
-  // not that fast:
+  def solution (limit: Int): Long = {
+    val sieve = calculateSieveUpTo(limit);
 
-  @tailrec
-  def getPrimes(primes: Vector[Long], sieve: Vector[Long], limit: Long): Vector[Long] = {
-//    println(s"have $primes and sieve $sieve")
-    val nextSieve = getNextSieve(sieve, primes.head,limit)
-    if(nextSieve.headOption.isDefined)
-      getPrimes(nextSieve.head +: primes,nextSieve, limit)
-    else
-      primes
+    val primes: Array[Long] = sieve.zipWithIndex.filter(_._1 == true).map(_._2.toLong)
+
+    primes.sum
   }
-
-
-  def getNextSieve(sieve: Vector[Long], prime: Long, limit: Long):Vector[Long] = {
-    sieve diff (prime to(limit,prime))
-  }
-
-
-
-  def getPrimes(limit:Long):Vector[Long] = {
-    val numbers = (3L to limit).toVector
-    getPrimes(Vector(2L),numbers,limit)
-  }
-
 
 }
